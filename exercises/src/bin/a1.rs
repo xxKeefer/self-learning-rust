@@ -12,5 +12,12 @@ fn main() {
     let first_name = "Daniel";
     let last_name = "Keefer";
 
+    fn display_string(string: &str) {
+        println!("{}", string);
+    }
+
+    display_string(first_name);
+    display_string(last_name);
+
     println!("My name is {} {}.", first_name, last_name);
 }
