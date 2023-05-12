@@ -138,3 +138,29 @@ while y <= 5 {
     y += 1;
 }
 ```
+
+## Enums
+
+Enums are used to define a type by enumerating its possible values. This is useful for defining a type that can only have a few possible values. For example, a `Direction` enum can only be `Up`, `Down`, `Left` or `Right`. It is a good way to avoid *Magic Strings* or *Magic Numbers*.
+
+```rust
+
+enum Direction {
+    Up,
+    Down,
+    Left,
+    Right,
+}
+
+fn which_way(go:Direction){
+    match go {
+        Direction::Up => println!("Go up!"),
+        Direction::Down => println!("Go down!"),
+        Direction::Left => println!("Go left!"),
+        Direction::Right => println!("Go right!"),
+        // Direction::Random => ...
+    }
+}
+```
+
+**Note**: Something like `Direction::Random` would throw an error here because it is not a valid value. Also the whole match statement would error if it was added to the enum because it would then mean that the match statement is no longer exhaustive.
