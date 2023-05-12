@@ -25,6 +25,10 @@ fn display_color(color: Color) {
 }
 
 fn main() {
-    let color = Color::Blue;
-    display_color(color)
+    let red = Color::Red;
+    display_color(red);
+    let blue = Color::Blue;
+    display_color(blue);
+    let green = Color::Green;
+    display_color(green);
 }
