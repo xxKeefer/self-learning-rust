@@ -164,3 +164,21 @@ fn which_way(go:Direction){
 ```
 
 **Note**: Something like `Direction::Random` would throw an error here because it is not a valid value. Also the whole match statement would error if it was added to the enum because it would then mean that the match statement is no longer exhaustive.
+
+## Structs
+
+Structs are kind of like objects in javascript. They are used to define a custom type. They can have properties and methods.
+
+```rust
+struct Pokemon {
+    name: String,
+    id: u8,
+}
+
+let bulbasaur = Pokemon {
+    name: "Bulbasaur",
+    id: 1,
+}
+
+println!("Pokedex entry #{} is {}!", bulbasaur.id, bulbasaur.name);
+```
