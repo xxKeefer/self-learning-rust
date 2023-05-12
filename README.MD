@@ -186,3 +186,56 @@ println!("Pokedex entry #{} is {}!", bulbasaur.id, bulbasaur.name);
 ## Tuples
 
 Rust Tuples are simmilar to what I think of with Typescript tuples, the main difference I can see is that they use `()` instead of `[]` to define them.
+
+## Ownership
+
+consider this example:
+
+```rust
+
+enum Light {
+    Bright,
+    Dull
+}
+
+fn display_light(light: Light) {
+    match light {
+        Light::Bright => println!("The light is bright!"),
+        Light::Dull => println!("The light is dull!"),
+    }
+}
+
+fn main() {
+    let light = Light::Bright;
+    display_light(light);
+    display_light(light);
+}
+```
+
+While this looks fine, actually it will error at compile time because of the second call to `display_light`. This is because `light` is being moved into the function, and then it is being moved again. This is not allowed in Rust as once the variable is moved into another function scope. References to data automatically get dropped once the execution exits the scope it is ***owned*** by. . The solution is to use a reference.
+
+```rust
+
+enum Light {
+    Bright,
+    Dull
+}
+
+// notice the ampersand (&), indicates a borrowed reference
+fn display_light(light: &Light) { 
+    match light {
+        Light::Bright => println!("The light is bright!"),
+        Light::Dull => println!("The light is dull!"),
+    }
+}
+
+fn main() {
+    let light = Light::Bright;
+    // notice the ampersand (&)
+    display_light(&light);
+    // notice the ampersand (&)
+    display_light(&light); 
+}
+```
+
+This allows the `main` function to keep ownership of the variable, and pass a reference to the `display_light` function ensuring it doesn't delete the variable as part of clean up. This is called `borrowing` in Rust. The `main` maintains ownership and responsibility for the variable, but the `display_light` function can use it. This is a very important concept in Rust, and is one of the main reasons it is so safe.
