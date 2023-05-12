@@ -182,3 +182,7 @@ let bulbasaur = Pokemon {
 
 println!("Pokedex entry #{} is {}!", bulbasaur.id, bulbasaur.name);
 ```
+
+## Tuples
+
+Rust Tuples are simmilar to what I think of with Typescript tuples, the main difference I can see is that they use `()` instead of `[]` to define them.
