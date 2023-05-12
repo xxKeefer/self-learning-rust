@@ -18,6 +18,8 @@ Variables assign data (a value and type) to a temporary memory location. These a
 
 ### Some examples
 
+**Note**: Comments are the same as in javascript, single line comments are `//` and multiline comments are `/* */`
+
 **Note**: The `let` keyword is used to declare a variable, and the semi colon `;` is used to end a statement and continue to the next line.
 
 ```rust
