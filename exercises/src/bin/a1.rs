@@ -8,4 +8,9 @@
 // * Use a function to display your last name
 // * Use the println macro to display messages to the terminal
 
-fn main() {}
+fn main() {
+    let first_name = "Daniel";
+    let last_name = "Keefer";
+
+    println!("My name is {} {}.", first_name, last_name);
+}

@@ -1,4 +1,4 @@
 // ignore compiled code in exercise folders
 **/target/
 
-excerises/Cargo.lock
+exercises/Cargo.lock
