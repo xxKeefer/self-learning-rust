@@ -100,6 +100,22 @@ if x == 5 {
 }
 ```
 
+### Match
+
+`match` : this is very simmilar to a `switch` statement in javascript. It is used to match a value to a pattern, and then execute the code block for that pattern. It is important it be exhaustive, meaning that it needs to cover all possible values. If it is not exhaustive, the compiler will throw an error.
+
+```rust
+let some_bool = true;
+match some_bool {
+    true => println!("it is true"),
+    false => println!("it is false"),
+    _ => println!("This matches all other cases, but is imposible for this boolean example."),
+}
+```
+
+**Note**: Use `_` to match the default case, or all other option not covered by the exhaustive cases.
+**Note**: `else if` is not checked by the compiler but `match` is. If a new variable is created that isn't handled by the match cases the comiler will yell at you. this is not the case with `if else`s
+
 ### Loops
 
 `loop` : this is the equivalent of a `while true` loop in javascript. It will run forever, unless you break out of it.
