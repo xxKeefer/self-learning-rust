@@ -10,4 +10,11 @@
 // * Print the variable within the while loop
 // * Do not use break to exit the loop
 
-fn main() {}
+fn main() {
+    let mut iter = 5;
+    while iter > 0 {
+        println!("{:?}", iter);
+        iter -= 1;
+    }
+    println!("done!")
+}
