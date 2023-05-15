@@ -12,4 +12,7 @@
 //   to uppercase and lowercase
 //   * Try searching for: to_uppercase, to_lowercase
 
-fn main() {}
+fn main() {
+    let example = String::from("ExAmPlE");
+    println!("{} | {}", &example.to_uppercase(), &example.to_lowercase())
+}
