@@ -239,3 +239,59 @@ fn main() {
 ```
 
 This allows the `main` function to keep ownership of the variable, and pass a reference to the `display_light` function ensuring it doesn't delete the variable as part of clean up. This is called `borrowing` in Rust. The `main` maintains ownership and responsibility for the variable, but the `display_light` function can use it. This is a very important concept in Rust, and is one of the main reasons it is so safe.
+
+## `impl` Keyword
+
+`impl` allows for the implenation of specific functionality for structs and enums. It is simmilar to the `class` keyword in javascript. It allows for the implenation of methods and functions for a specific type.
+
+```rust
+enum Signal{
+    Red,
+    Yellow,
+    Green,
+}
+struct TrafficLight {
+    signal: Signal,
+}
+
+impl TrafficLight {
+    // note the `Self` keyword, it could have been written 
+    // as `fn new() -> TrafficLight {` but this way if the 
+    // struct / impl name changes, it will still work
+    fn new() -> Self {
+        Self {
+            signal: Signal::Red,
+        }
+    }
+
+    // note the `&mut self` this is a mutable reference to the struct
+    // simmillar to `this` in javascript 
+    fn change(&mut self) {
+        self.signal = match self.signal {
+            Signal::Red => Signal::Green,
+            Signal::Yellow => Signal::Red,
+            Signal::Green => Signal::Yellow,
+        }
+    }
+
+    fn display(&self) {
+        match self.signal {
+            Signal::Red => println!("The light is red!"),
+            Signal::Yellow => println!("The light is yellow!"),
+            Signal::Green => println!("The light is green!"),
+        }
+    }
+}
+
+fn main() {
+    let mut lights = TrafficLight::new();
+    lights.display(); // -> "The light is red!"
+    lights.change();
+    lights.display(); // -> "The light is green!"
+    lights.change();
+    lights.display(); // -> "The light is yellow!"
+    lights.change();
+    lights.display(); // -> "The light is red!"
+    lights.change();
+}
+```
