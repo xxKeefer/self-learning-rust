@@ -16,4 +16,32 @@
 //   * For the Ok variant, print any message you want
 //   * For the Err variant, print out the error message
 
-fn main() {}
+#[derive(Debug)]
+struct Adult {
+    name: String,
+    age: i32,
+}
+
+impl Adult {
+    fn new(name: String, age: i32) -> Result<Self, String> {
+        if age >= 21 {
+            return Ok(Self { name, age });
+        } else {
+            return Err(String::from("Adult's must be 21 or older."));
+        }
+    }
+}
+
+fn main() {
+    let people = vec![
+        Adult::new(String::from("Dan"), 18),
+        Adult::new(String::from("Sam"), 21),
+    ];
+
+    for p in people {
+        match p {
+            Ok(person) => println!("Hi, there {}!", person.name),
+            Err(e) => println!("{}", e),
+        }
+    }
+}
