@@ -295,3 +295,22 @@ fn main() {
     lights.change();
 }
 ```
+
+## Vectors
+
+Vectors are simmilar to arrays in javascript. They are a collection of values of the **same** type. They are defined with the `Vec` keyword.
+
+```rust
+// creating a new vector with long hand syntax
+let mut numbers = Vec::new();
+numbers.push(1);
+numbers.push(2);
+numbers.push(3);
+numbers.pop();
+numbers.len(); // -> 2
+let one = numbers[0];
+
+// creating a new vector with with vec macro
+let mut numbers = vec![1, 2, 3];
+
+```
