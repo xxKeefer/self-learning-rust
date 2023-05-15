@@ -118,8 +118,10 @@ fn main() {
     // Catherine is trying to access the Warehouse, which requires access level 500.
     // She doesn't have a keycard, so this should be an error.
     let catherine_authorized = authorize("Catherine", ProtectedLocation::Warehouse);
+    let catherine_authorized_all = authorize("Catherine", ProtectedLocation::All);
 
     println!("{anita_authorized:?}");
     println!("{brody_authorized:?}");
     println!("{catherine_authorized:?}");
+    println!("{catherine_authorized_all:?}");
 }

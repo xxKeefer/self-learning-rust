@@ -40,7 +40,7 @@ fn main() {
 
     for p in people {
         match p {
-            Ok(person) => println!("Hi, there {}!", person.name),
+            Ok(person) => println!("Hi, there {}! you are {}.", person.name, person.age),
             Err(e) => println!("{}", e),
         }
     }
