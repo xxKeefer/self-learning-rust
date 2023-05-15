@@ -369,6 +369,37 @@ let mut numbers = vec![1, 2, 3];
 
 ```
 
+## Hashmaps
+
+Hashmaps are similar to objects in javascript. They are a collection of key value pairs. They are defined with the `HashMap` keyword. You must use the `mut` keyword to make a HashMap mutable as you have to insert values into it.
+
+**Note:** Hashmaps are unordered, so you cannot rely on the order of the keys or values. This differs from Vecs which are ordered.
+
+```rust
+let mut pokemon = HashMap::new();
+pokemon.insert("Bulbasaur", 1);
+pokemon.insert("Ivysaur", 2);
+pokemon.insert("Venusaur", 3);
+pokemon.remove("Venusaur");
+
+match pokemon.get("Bulbasaur") {
+    Some(number) => println!("Bulbasaur is number {}", number),
+    None => println!("Bulbasaur is not in the pokedex"),
+}
+
+for (name, number) in &pokemon.iter() {
+    println!("{} is number {}", name, number);
+}
+
+for name in pokemon.keys() {
+    println!("{}", name);
+}
+
+for id in pokemon.values() {
+    println!("{}", id);
+}
+```
+
 ## Advanced Macros
 
 ### derive(Debug)
