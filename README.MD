@@ -12,6 +12,26 @@ A Collection of Rust Notes and Projects I have made during my learning process, 
 - **Character** : `char` is a single unicode character, specified with single quotes
 - **String** : `String` is a collection of characters, specified with double quotes. This what i normally think of as strings, the difference here is that there is a specific difference between a `char` and a `string`
 
+### `String` vs `&str`
+
+`String` is owned whereas `&str` is a reference.  `String` must be used when storing in [structs](#structs), or when you need to own the data. `&str` is used when you just need to reference the data, for example when passing it to a function.
+
+```rust
+fn print_it(data: &str) {
+    println!("{:?}", data);
+}
+
+fn main() {
+    print_it("I am a string slice!");
+    let owned_string = String::from("I am an owned string!");
+    let to_owned = "I am also an owned string!".to_owned();
+    print_it(&owned_string); // note the need to borrow the owned strings
+    print_it(&to_owned); // note the need to borrow the owned strings
+}
+```
+
+**Note**: When using the owned strings wee need to indicate a [borrowed](#ownership) reference with an ampersand. this is the reason you need to use owned strings in Structs, because is the string in the struct was borrowed it would not be able to clean up the memory when the struct is dropped as it does not have the permission to drop the borrowed string, this causes a comppilier error.
+
 ## Variables
 
 Variables assign data (a value and type) to a temporary memory location. These are immutable  by default, but can be made mutable with the `mut` keyword.
