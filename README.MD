@@ -1,6 +1,6 @@
 # Rust Learnings
 
-A Collection of Rust Notes and Projects I have made during my learning process, this not an indepth guide or even complete in some cases. It is a collection of notes that I made to help me learn Rust fro mmy perspect as a Typescript dev. If I already understood a concept, I did not take notes on it.
+A Collection of Rust Notes and Projects I have made during my learning process, this not an in-depth guide or even complete in some cases. It is a collection of notes that I made to help me learn Rust fro my perspective as a Typescript dev. If I already understood a concept, I did not take notes on it.
 
 ## Learning Resources
 
@@ -30,7 +30,7 @@ fn main() {
 }
 ```
 
-**Note**: When using the owned strings wee need to indicate a [borrowed](#ownership) reference with an ampersand. this is the reason you need to use owned strings in Structs, because is the string in the struct was borrowed it would not be able to clean up the memory when the struct is dropped as it does not have the permission to drop the borrowed string, this causes a comppilier error.
+**Note**: When using the owned strings wee need to indicate a [borrowed](#ownership) reference with an ampersand. this is the reason you need to use owned strings in Structs, because is the string in the struct was borrowed it would not be able to clean up the memory when the struct is dropped as it does not have the permission to drop the borrowed string, this causes a compiler error.
 
 ## Variables
 
@@ -122,19 +122,19 @@ if x == 5 {
 
 ### Match
 
-`match` : this is very simmilar to a `switch` statement in javascript. It is used to match a value to a pattern, and then execute the code block for that pattern. It is important it be exhaustive, meaning that it needs to cover all possible values. If it is not exhaustive, the compiler will throw an error.
+`match` : this is very similar to a `switch` statement in javascript. It is used to match a value to a pattern, and then execute the code block for that pattern. It is important it be exhaustive, meaning that it needs to cover all possible values. If it is not exhaustive, the compiler will throw an error.
 
 ```rust
 let some_bool = true;
 match some_bool {
     true => println!("it is true"),
     false => println!("it is false"),
-    _ => println!("This matches all other cases, but is imposible for this boolean example."),
+    _ => println!("This matches all other cases, but is impossible for this boolean example."),
 }
 ```
 
 **Note**: Use `_` to match the default case, or all other option not covered by the exhaustive cases.
-**Note**: `else if` is not checked by the compiler but `match` is. If a new variable is created that isn't handled by the match cases the comiler will yell at you. this is not the case with `if else`s
+**Note**: `else if` is not checked by the compiler but `match` is. If a new variable is created that isn't handled by the match cases the compiler will yell at you. this is not the case with `if else`s
 
 ### Loops
 
@@ -205,7 +205,7 @@ println!("Pokedex entry #{} is {}!", bulbasaur.id, bulbasaur.name);
 
 ## Tuples
 
-Rust Tuples are simmilar to what I think of with Typescript tuples, the main difference I can see is that they use `()` instead of `[]` to define them.
+Rust Tuples are similar to what I think of with Typescript tuples, the main difference I can see is that they use `()` instead of `[]` to define them.
 
 ## Ownership
 
@@ -262,7 +262,7 @@ This allows the `main` function to keep ownership of the variable, and pass a re
 
 ## `impl` Keyword
 
-`impl` allows for the implenation of specific functionality for structs and enums. It is simmilar to the `class` keyword in javascript. It allows for the implenation of methods and functions for a specific type.
+`impl` allows for the implementation of specific functionality for structs and enums. It is similar to the `class` keyword in javascript. It allows for the implementation of methods and functions for a specific type.
 
 ```rust
 enum Signal{
@@ -285,7 +285,7 @@ impl TrafficLight {
     }
 
     // note the `&mut self` this is a mutable reference to the struct
-    // simmillar to `this` in javascript 
+    // similar to `this` in javascript 
     fn change(&mut self) {
         self.signal = match self.signal {
             Signal::Red => Signal::Green,
@@ -318,7 +318,7 @@ fn main() {
 
 ## Vectors
 
-Vectors are simmilar to arrays in javascript. They are a collection of values of the **same** type. They are defined with the `Vec` keyword.
+Vectors are similar to arrays in javascript. They are a collection of values of the **same** type. They are defined with the `Vec` keyword.
 
 ```rust
 // creating a new vector with long hand syntax
@@ -377,7 +377,7 @@ Pokemon { name: "Bulbasaur", id: 1, poke_type: Grass }
 
 ### derive(Clone, Copy)
 
-this is used to allow for the `clone` and `copy` methods to be used on a struct or enum. Which tells the complier to allow for copying of the struct or enum instead of transfering ownership. This is used like this:
+this is used to allow for the `clone` and `copy` methods to be used on a struct or enum. Which tells the complier to allow for copying of the struct or enum instead of transferring ownership. This is used like this:
 
 ```rust
 enum PokeType {
@@ -404,7 +404,7 @@ fn main() {
         poke_type: PokeType::Grass,
     };
     consume_pokemon(bulbasaur);
-    // normally this would cause a compiler error because we are transfering ownsership
+    // normally this would cause a compiler error because we are transferring ownership
     // but because of the `Clone` and `Copy` traits we can copy the struct and pass the
     // copy to the function leaving the original intact
     consume_pokemon(bulbasaur); 
