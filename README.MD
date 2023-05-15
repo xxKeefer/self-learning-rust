@@ -334,3 +334,81 @@ let one = numbers[0];
 let mut numbers = vec![1, 2, 3];
 
 ```
+
+## Advanced Macros
+
+### derive(Debug)
+
+the `derive` macro is used to derive functionality for a struct or enum. The `Debug` trait is used to allow for the `println!` macro to be used on a struct or enum too *pretty print* it. It is used like this:
+
+```rust
+#[derive(Debug)]
+enum PokeType {
+    Fire,
+    Water,
+    Grass,
+}
+
+#[derive(Debug)]
+struct Pokemon {
+    name: String,
+    id: u8,
+    poke_type: PokeType,
+}
+
+fn main() {
+    let bulbasaur = Pokemon {
+        name: "Bulbasaur".to_string(),
+        id: 1,
+        poke_type: PokeType::Grass,
+    };
+    println!("{:?}", bulbasaur.poke_type); // note the use of the debug token `:?`
+    println!("{:?}", bulbasaur); // note the use of the debug token `:?`
+}
+```
+
+this main function will generate the following output:
+
+```bash
+Grass
+Pokemon { name: "Bulbasaur", id: 1, poke_type: Grass }
+
+```
+
+### derive(Clone, Copy)
+
+this is used to allow for the `clone` and `copy` methods to be used on a struct or enum. Which tells the complier to allow for copying of the struct or enum instead of transfering ownership. This is used like this:
+
+```rust
+enum PokeType {
+    Fire,
+    Water,
+    Grass,
+}
+
+#[derive(Debug, Copy)]
+struct Pokemon {
+    name: String,
+    id: u8,
+    poke_type: PokeType,
+}
+
+fn consume_pokemon(pokemon: Pokemon) {
+    println!("Consumed {:?}", pokemon);
+}
+
+fn main() {
+    let bulbasaur = Pokemon {
+        name: "Bulbasaur".to_string(),
+        id: 1,
+        poke_type: PokeType::Grass,
+    };
+    consume_pokemon(bulbasaur);
+    // normally this would cause a compiler error because we are transfering ownsership
+    // but because of the `Clone` and `Copy` traits we can copy the struct and pass the
+    // copy to the function leaving the original intact
+    consume_pokemon(bulbasaur); 
+}
+```
+
+**Note**: only use the `Copy` trait if the struct or enum is small, otherwise it will be very inefficient.
