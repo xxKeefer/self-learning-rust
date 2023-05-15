@@ -185,6 +185,40 @@ fn which_way(go:Direction){
 
 **Note**: Something like `Direction::Random` would throw an error here because it is not a valid value. Also the whole match statement would error if it was added to the enum because it would then mean that the match statement is no longer exhaustive.
 
+### Advanced Enums
+
+Each item in a enum is called a 'variant'. Variants can have data associated with them. For example, a `Mouse` enum could have more then just click types associated with it, like a variant for the position of the mouse or scroll of the the wheel. These variants with data have their data type defined after the variant name with parenthesis `()`.
+
+```rust
+enum Mouse {
+    LeftClick,
+    RightClick,
+    MiddleClick,
+    Scroll(i32),
+    Move { x: i32, y: i32 },
+}
+```
+
+You can even go so far as to define enum variants that are themselves enums. Consider the following example:
+
+```rust
+enum PromoDiscount {
+    NewUser,
+    Holiday(String), // ex: "XMAS" or "EASTER"
+}
+
+enum Discount{
+    Percent(i32),
+    Flat(i32),
+    Promo(PromoDiscount),
+}
+
+let half_price = Discount::Percent(50)
+let five_dollars_off = Discount::Flat(5)
+let new_user_discount = Discount::Promo(PromoDiscount::NewUser)
+let christmas_promotion = Discount::Promo(PromoDiscount::Holiday("XMAS".to_string()))
+```
+
 ## Structs
 
 Structs are kind of like objects in javascript. They are used to define a custom type. They can have properties and methods.
